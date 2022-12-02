@@ -3,17 +3,11 @@ const cors = require("cors");
 
 const app = express();
 
-app.use(cors());
-
-// var corsOptions = {
-//   origin: [
-//     "http://localhost:3000",
-//     "http://localhost:3002",
-//     "https://kijabi-fe.vercel.app",
-//   ],
-//   default: "https://kijabi-fe.vercel.app",
-// };
-// parse requests of content-type - application/json
+const corsOptions = {
+  origin: "*",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // parse requests of content-type - application/x-www-form-urlencoded
