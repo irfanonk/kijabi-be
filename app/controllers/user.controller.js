@@ -5,6 +5,7 @@ const baseUrl = "https://reqres.in/api/users";
 
 exports.getUsers = async (req, res) => {
   const { page } = req.query;
+  const { email } = req.query;
   const url = `${baseUrl}?page=${page}`;
   const options = {
     method: "GET",
@@ -16,6 +17,11 @@ exports.getUsers = async (req, res) => {
   try {
     let response = await fetch(url, options);
     response = await response.json();
+    if (email) {
+      response.data = response.data.filter((user) =>
+        user.email.includes(email)
+      );
+    }
     res.status(200).json(response);
   } catch (err) {
     console.log(err);
