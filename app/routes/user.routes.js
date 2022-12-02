@@ -7,5 +7,5 @@ module.exports = (app) => {
   // @get single user
   router.get("/:id", user.getUser);
 
-  app.use("/api/users", router);
+  app.use("/apiV1/users", router);
 };
